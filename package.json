@@ -1,21 +1,29 @@
 {
   "name": "web-transitions-sample",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "A simple JavaScript workflow management system.",
+  "keywords": [
+    "javascript",
+    "iframe",
+    "workflow"
+  ],
   "main": "src/index.js",
   "dependencies": {
-    "react": "16.5.2",
-    "react-dom": "16.5.2",
-    "react-scripts": "2.0.3",
-    "redux": "4.0.1"
+    "browserify": "^16.2.3",
+    "es6ify": "^1.6.0",
+    "events": "^3.0.0",
+    "jest": "^23.6.0",
+    "jquery": "^3.3.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "regenerator-runtime": "^0.12.1"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "echo 'There is no start. Just open public/index.html'",
+    "build": "browserify --transform es6ify --standalone WebWorkflow src/web-workflow/index.js -o dist/web-workflow-bundle.js; browserify --transform es6ify --standalone WebWorkflow src/workflow-child/index.js -o dist/workflow-child-bundle.js",
+    "test": "jest"
   },
   "browserslist": [
     ">0.2%",
