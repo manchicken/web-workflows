@@ -27,19 +27,29 @@ describe('bootstrap', () => {
     expect(f1.canBootstrap()).toBeFalsy()
   })
 
-  test("can bootstrap", () => {
-    emitter.on('frame-loaded', jest.fn())
+  test("can bootstrap", (done) => {
+    const emitterMock = jest.fn(x=>console.log(`BOOM ${x}`))
+    emitter.on('frame-loaded', emitterMock)
     const f2 = new Frame({
       appId:'abc123',
-      source:'https://manchicken.com',
+      source:'https://github.com',
       targetFrame:document.getElementById('jest-iframe'),
       parent:mockParent,
     })
     expect(f2).toBeInstanceOf(Frame)
     expect(f2.canBootstrap()).toBeTruthy()
     expect(f2.loading).toBeFalsy()
+
+    // Bootstrap, and make sure it indicates that we're loading.
     f2.bootstrap()
     expect(f2.loading).toBeTruthy()
-    expect
+
+    // This demonstrates that a few seconds later, we're done loading.
+    expect(emitterMock.mock).toHAve
+    setTimeout(() => {
+      // expect(f2.loading).toBeFalsy()
+      expect(emitterMock.mock.calls.length).toBe(1)
+      done()
+    }, 3000)
   })
 })

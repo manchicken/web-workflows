@@ -36,6 +36,7 @@ class Frame {
   bootstrap() {
     const frame = this.core.targetFrame
     frame.addEventListener('load', (event)=>{
+      console.error("!i!i!i!i!i!i!i!i!i! LOAD CALLED. !i!i!i!i!i!i!i!i!i!");
       // Only fire the frameLoaded callback if we finished loading ourself
       if (frame.src === this.core.source) {
         this.frameLoaded()
@@ -49,7 +50,7 @@ class Frame {
    * Finish up now that the frame has finished loading.
    */
   frameLoaded() {
-    console.log("frame is loaded.")
+    console.error("!i!i!i!i!i!i!i!i!i! frame is loaded. !i!i!i!i!i!i!i!i!i!");
     this.loading = false
     this.core.parent.emitEvent('frame-loaded', {
       appId:this.core.appId,
